@@ -179,9 +179,67 @@ function mat.NeuralNetwork(topologyVector,activation)
   end
   return NN
 end
- 
+
+-- function mat.TrainNNEvolutionary(NN,inputs,targets,gens,genSize,genBest,mutation)
+--   mutation=mutation+0.0001
+--   gen = {}
+--   scor={}
+--   for i=1,genSize do
+--     gen[i] = NN
+--     for i=1,gens[i].depth do
+--       gen[i][j]=mat.add(gen[i][j],mat.RandomiseMatrix(mat.matrix(NN[j].m,NN[j].m),-mutation,mutation))
+--       scor[i]=mat.sqsum(gen[i].eval(inputs),targets)
+--     end
+--   end
+--   for epochs=1,gens do
+--     k=0
+--     c=0
+--     for i=1,genSize do
+--       if scor[i]>k then
+--         k=scor[i]
+--       end
+--     end
+--     for i=1,genSize do
+--       if scor[i]>k then
+--         k=scor[i]
+--       end
+--     end
+--     best={}
+--     for i=1,genSize do
+--       if scor[i]>(1-genBest)*k then
+--         best[c]=gen[i]
+--         c=c+1
+--       end
+--     end
+--     gen=best
+--     for i=1,(genSize-c) do
+--       gen[c+i]=gen[i]
+--       for j=1,(genSize-c) do
+--       gen[c+i][j]=mat.add(gen[c+i][j],mat.RandomiseMatrix(mat.matrix(NN[j].m,NN[j].m),-mutation,mutation))
+--       end
+--     end
+
+--   end
+--   k=0
+--   c=0
+--   for i=1,(genSize) do 
+--     scor[i]=mat.sqsum(gen[i].eval(inputs),targets)
+--     if scor[i]>k then
+--       c=i
+--     end
+--   end
+--   return gen[c]
+-- end 
+
 --return mat
 --This line was to make it a mosule but it doesn't seem to work for some reason. Now it's used as an explicitly defined "header"
+--lines commented out are works in progress. They are currently very buggy or failed all the testing.
+--Feel free to submit pull requests to fix or otherwise you can wait for me to get back to them.
+--I maintain this library in my spare time so it may be a while.
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
  
 mat.PrintMatrix(mat.RandomiseMatrix(mat.matrix(2,2),0,1))
 print("\n")
@@ -197,3 +255,8 @@ mat.PrintMatrix(topology)
  
 nn=mat.NeuralNetwork(topology,mat.sigmoid)
 nn.Print()
+print("===============================================\n")
+-- inputVector = mat.matrix(2,1)
+-- inputVector[1][1]=1
+-- inputVector[2][1]=0
+-- mat.PrintMatrix(nn.eval(inputVector))
